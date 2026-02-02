@@ -12,6 +12,43 @@ The task is to build a pricing model.
 
 ---
 
+## Repository for Model Pipeline
+
+https://github.com/zarizachow/Data-Analysis-3
+
+---
+
+### Folder Structure
+
+The repository is organised to clearly separate raw data, cleaned data, code, and outputs,  
+making the project easy to navigate and fully reproducible.
+
+```text
+Data-Analysis-3/
+├── Assignment-1/
+│   ├── Data/
+│   │   ├── Raw/
+│   │   │   ├── Tokyo_listings/
+│   │   │   │   ├── Tokyo_2024-30-Dec/
+│   │   │   │   │   └── listings.csv
+│   │   │   │   └── Tokyo_2025_29_Sep/
+│   │   │   │       └── listings.csv
+│   │   │   └── HongKong_listings/
+│   │   │       └── listings.csv
+│   │   └── Cleaned/
+│   │       ├── Tokyo_listings/
+│   │       │   ├── tokyo_listings_q4_2024_clean.csv
+│   │       │   └── tokyo_listings_q3_2025_clean.csv
+│   │       └── HongKong_listings/
+│   │           └── hongkong_listings_latest_clean.csv
+│   ├── Notebooks/
+│   │   └── assignment1_airbnb_models.ipynb
+│   └── README.md
+└── .gitignore
+```
+
+---
+
 ## Data Sources
 
 All datasets are sourced from **Inside Airbnb**:  
@@ -28,7 +65,15 @@ https://insideairbnb.com/get-the-data/
 All raw and cleaned datasets are stored in the GitHub repository and loaded via raw URLs to ensure full reproducibility.
 
 ## Cleaned Datasets
-- 
+
+- Tokyo Listings Q4 2024:     
+https://github.com/zarizachow/Data-Analysis-3/blob/main/Assignment-1/Data/Cleaned/Tokyo_listings/tokyo_listings_q4_2024_clean.csv
+
+- Tokyo Listings Q3 2025:   
+https://github.com/zarizachow/Data-Analysis-3/blob/main/Assignment-1/Data/Cleaned/Tokyo_listings/tokyo_listings_q3_2025_clean.csv
+
+- Hong Kong Listings:   
+https://github.com/zarizachow/Data-Analysis-3/blob/main/Assignment-1/Data/Cleaned/HongKong_listings/hongkong_listings_latest_clean.csv
 
 ---
 
@@ -202,7 +247,7 @@ The dataset contains 27,945 listings and is cleaned using the same pipeline as t
 
 ---
 
-## 5. Practical Modelling Experience
+## 5. Modelling Experience
 
 ### Lessons Learned from Running Models on Live Data
 
@@ -235,3 +280,11 @@ Key learning points:
 - All data is stored in the repository or loaded via raw GitHub URLs
 - All preprocessing is performed inside pipelines
 - The project can be run end-to-end without manual intervention
+
+**Steps to Reproduce**
+
+- Clone the public GitHub repository  
+- Navigate to the `Assignment-1` folder  
+- Create and activate a conda environment (Python 3.10)  
+- Install dependencies using `requirements.txt`  
+- Open and run the Jupyter notebook from top to bottom  
