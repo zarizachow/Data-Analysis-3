@@ -41,9 +41,13 @@ Data-Analysis-3/
 │   │       │   └── tokyo_listings_q3_2025_clean.csv
 │   │       └── HongKong_listings/
 │   │           └── hongkong_listings_latest_clean.csv
-│   ├── Notebooks/
-│   │   └── assignment1_airbnb_models.ipynb
+│   ├── Plot/
+│   │   ├── rmse-vs-runtime_hk_latest.png
+│   │   ├── rmse-vs-runtime_tokyo_q3_2025.png
+│   │   ├── rmse-vs-runtime_tokyo_q4_2024.png
+│   ├── chowdhury_zariza_assignment_1_code.ipynb
 │   └── README.md
+│   └── requirements.txt
 └── .gitignore
 ```
 
@@ -137,20 +141,20 @@ Categorical variables are encoded inside pipelines using one-hot encoding.
 
 #### Horserace Table
 
-| Model | RMSE (Test Set) | Runtime (seconds) |
-|------|---------------|------------------|
-| OLS | 12,740.71 | 4.5 |
-| LASSO | 15,064.24 | 1.7 |
-| Random Forest | 13,867.29 | 0.9 |
-| Gradient Boosting | 14,187.45 | 10.3 |
-| Decision Tree (CART) | 18,161.32 | 0.8 |
+| Model                    | RMSE (Test Set) | Runtime (seconds) |
+|--------------------------|----------------|-------------------|
+| OLS                      | 12,740.71      | 4.5               |
+| LASSO                    | 15,064.24      | 1.7               |
+| Random Forest            | 13,867.29      | 0.9               |
+| Gradient Boosting        | 14,187.45      | 10.3              |
+| Decision Tree (CART)     | 18,161.32      | 0.8               |
 
 #### Discussion of Performance
 
-- **OLS** performs strongly for a simple baseline, with low RMSE and low runtime.
-- **LASSO** performs worse than OLS, suggesting regularization does not improve prediction here.
-- **Random Forest** improves over LASSO and CART but is more computationally expensive.
-- **Gradient Boosting** performs similarly to Random Forest but does not outperform OLS.
+- **OLS** performs strongly as a baseline with low RMSE and low runtime.
+- **LASSO** performs worse than OLS, suggesting regularisation does not help here.
+- **Random Forest** improves over LASSO but is more complex.
+- **Gradient Boosting** pdoes not outperform simpler models.
 - **Decision Tree (CART)** performs the worst due to overfitting and limited generalization.
 
 Overall, **OLS provides a strong and efficient baseline**, while more complex models add limited gains.
@@ -221,29 +225,36 @@ The dataset contains 27,945 listings and is cleaned using the same pipeline as t
 
 #### A. Tokyo Q3 2025 – Horserace Table
 
-| Model | RMSE | Runtime (seconds) |
-|------|------|------------------|
-| OLS | 11,416.21 | 6.97 |
-| LASSO | 12,501.68 | 14.15 |
-| Random Forest | 16,035.61 | 1.31 |
-| Gradient Boosting | 10,117.58 | 27.15 |
-| Decision Tree (CART) | 10,271.04 | 28.28 |
+| Model                  | RMSE (Tokyo Q3 2025) | Runtime (seconds) |
+|------------------------|--------------------:|------------------:|
+| OLS                    | 18,036.31           | 0.71              |
+| LASSO                  | 16,266.81           | 0.19              |
+| Random Forest          | 15,534.18           | 0.25              |
+| Gradient Boosting      | 15,496.05           | 0.21              |
+| Decision Tree (CART)   | 20,981.30           | 0.17              |
 
-**Key insight**: Model rankings change over time, and more complex models do not always outperform simpler ones.
+#### Discussion
+- Gradient Boosting delivers the lowest RMSE.
+- Random Forest performs similarly but slightly worse.
+- Linear models perform reasonably but miss nonlinear effects.
+- CART performs worst, confirming instability of single trees.
 
 ---
 
 #### B. Hong Kong – Horserace Table
 
-| Model | RMSE | Runtime (seconds) |
-|------|------|------------------|
-| OLS | 455.96 | 1.38 |
-| LASSO | 546.48 | 0.61 |
-| Random Forest | 636.64 | 0.43 |
-| Gradient Boosting | 466.00 | 5.14 |
-| Decision Tree (CART) | 499.91 | 1.92 |
+| Model                  | RMSE (Hong Kong) | Runtime (seconds) |
+|------------------------|-----------------:|------------------:|
+| OLS                    | 192,551.03       | 0.32              |
+| LASSO                  | 440,408.95       | 0.06              |
+| Random Forest          | 21,884.92        | 0.09              |
+| Gradient Boosting      | 17,150.51        | 0.07              |
+| Decision Tree (CART)   | 28,422.55        | 0.06              |
 
-**Key insight**: OLS and Gradient Boosting generalize better across cities than Random Forest.
+#### Discussion
+- Linear models generalise poorly to Hong Kong.
+- Tree-based ensemble models perform substantially better.
+- Gradient Boosting again delivers the best performance.
 
 ---
 
@@ -269,7 +280,7 @@ Key learning points:
 
 - Model performance varies across time and geography
 - More complex models do not automatically generalize better
-- **OLS provides a strong, stable, and efficient baseline**
+- OLS provides a strong, stable, and efficient baseline
 - Ensemble models add complexity with mixed gains
 - Validity checks are essential before deploying pricing models
 
@@ -285,6 +296,6 @@ Key learning points:
 
 - Clone the public GitHub repository  
 - Navigate to the `Assignment-1` folder  
-- Create and activate a conda environment (Python 3.10)  
+- Create and activate a conda environment (Python)  
 - Install dependencies using `requirements.txt`  
 - Open and run the Jupyter notebook from top to bottom  
