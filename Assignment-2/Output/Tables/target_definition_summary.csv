@@ -1,0 +1,2 @@
+target_name,baseline_year,outcome_year,growth_metric,definition,quantile_cutoff,threshold_value,n_firms,fast_growth_rate
+fast_growth,2012,2013,log(sales_mil) difference,Top 9% by growth_log_2013_2012,0.9,0.7550297558438162,19135,0.10002613012803763
