@@ -1,4 +1,3 @@
-
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -14,7 +13,7 @@
 \geometry{margin=1in}
 
 \title{\textbf{Predicting Fast-Growing Firms: Summary Report}}
-\author{Data Analysis 3 - Assignment 2 \\ Submitted by: Balint Decsi (ID: 2506626), Zariza Chowdhury (ID: 2500086) \\ \url{https://github.com/zarizachow/Data-Analysis-3}}
+\author{Data Analysis 3 - Assignment 2 \\ Submitted by: Balint Decsi (ID: 2506626), Zariza Chowdhury (ID: 2500086) \\ \url{https://github.com/zarizachow/Data-Analysis-3/tree/main}}
 \date{February 2026}
 
 \begin{document}
@@ -38,7 +37,7 @@ We define a fast-growing firm as one in the top decile (top 10\%) of log sales g
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Why this target?} Focusing on the top decile isolates the truly high-performers from steady-state firms. A one-year horizon (2012-2013) allows for immediate actionable insights compared to longer horizons which may introduce survivorship bias or noise.
+    \item \textbf{Why this target?} Focusing on the top decile isolates the truly high-performers from steady-state firms. A one-year horizon (2012-2013) was chosen over a two-year horizon (2012-2014) to minimize \textbf{mean reversion effects}, where high growth naturally decays over longer periods, and to avoid \textbf{survivorship bias} that would exclude riskier, high-volatility firms from the sample. This provides a more immediate and actionable signal for investment.
     \item \textbf{Business Objective:} The goal is to invest in or target these firms early. Missing a fast grower (False Negative) is considered significantly more costly than investigating a false lead (False Positive).
     \item \textbf{Loss Function:} We assigned a cost ratio where the cost of a False Negative (FN) is \textbf{4 times} that of a False Positive (FP).
     \[ \text{Loss} = 1 \times \text{FP} + 4 \times \text{FN} \]

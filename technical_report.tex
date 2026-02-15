@@ -1,4 +1,3 @@
-
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -48,7 +47,7 @@
 \maketitle
 
 \section{Introduction}
-This technical report details the methodology, modeling choices, and evaluation results for predicting fast-growing firms using the Bisnode panel data (2010-2015). The code and full notebooks are available in the associated GitHub repository: \url{https://github.com/zarizachow/Data-Analysis-3}.
+This technical report details the methodology, modeling choices, and evaluation results for predicting fast-growing firms using the Bisnode panel data (2010-2015). The code and full notebooks are available in the associated GitHub repository: \url{https://github.com/zarizachow/Data-Analysis-3/tree/main}.
 
 \section{Data Preparation \& Feature Engineering}
 
@@ -60,10 +59,21 @@ We utilized the \texttt{bisnode-firms} dataset. The cleaning process involved:
     \item \textbf{Filtering:} We filtered for firms that were "alive" (positive sales) and had sales between 1,000 and 10 million EUR in the baseline year (2012).
 \end{itemize}
 
-\subsection{Target Variable}
-The target \texttt{fast\_growth} is a binary variable representing the top decile of sales growth.
+\subsection{Target Definition \& Rationale}
+We define "fast growth" as a binary outcome where a firm achieves a sales growth rate in the top 10\% of the distribution over a one-year horizon (2013 vs. 2012).
 \[ \text{Growth} = \ln(\text{Sales}_{2013}) - \ln(\text{Sales}_{2012}) \]
-Firms with growth $\ge 90^{th}$ percentile were labeled as \texttt{1}, others \texttt{0}. The base rate of the positive class is approx. 10\%.
+Firms with growth $\ge 90^{th}$ percentile were labeled as \texttt{1} (fast-growing), and others as \texttt{0}.
+
+\textbf{Choice of Horizon (1-year vs. 2-year):}
+We specifically chose a one-year growth horizon (2012-2013) over a two-year alternative (2012-2014) for several reasons rooted in corporate finance principles:
+
+\begin{enumerate}
+    \item \textbf{Mean Reversion:} Corporate growth rates typically exhibit mean reversion—firms with exceptionally high growth in one period often see their growth slow down in subsequent periods as competition enters or market saturation occurs. A shorter one-year horizon captures the immediate, high-momentum phase we are interested in predicting, whereas a two-year horizon might dilute this signal with the natural decay of growth rates.
+    
+    \item \textbf{Survivorship Bias:} Predicting growth over a longer two-year horizon requires firms to survive for an additional year. High-growth firms are often riskier and more volatile. By extending the horizon, we risk introducing survivorship bias, where the sample becomes skewed towards safer, more established firms, effectively filtering out the volatile high-flyers we aim to identify.
+    
+    \item \textbf{Forecasting Relevance:} From a practical investment or credit scoring perspective, short-term forecasts are often more actionable. Financial planning and credit assessment cycles typically operate on an annual basis. A one-year prediction aligns better with these standard operational cycles than a medium-term two-year forecast.
+\end{enumerate}
 
 \subsection{Features}
 We engineered a rich set of features based on financial reports and firm characteristics:
